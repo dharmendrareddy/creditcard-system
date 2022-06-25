@@ -1,7 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const http = require('http');
+
 const app = express()
 
-const port = 3000;
-app.listen(port, () => {
+app.use(bodyParser.json());
+app.use('/api', require('./api'));
+
+const server = http.createServer(app);
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
     console.log(`App listening on port ${port}`);
-})
+});
+
+module.exports = server;
