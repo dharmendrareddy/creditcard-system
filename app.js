@@ -5,7 +5,7 @@ const http = require('http');
 const app = express()
 
 app.use(bodyParser.json());
-app.use('/api', require('./api'));
+app.use(require('./api'));
 
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;

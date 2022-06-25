@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const redis = require('../../lib/services/redis');
+const redis = require('../../../lib/services/redis');
 
 const getCards = async (req, resp) => {
     const data = await redis.get('cards');
@@ -19,4 +19,5 @@ const addCard = async (req, resp) => {
 
 router.get('/list', getCards);
 router.post('/add', addCard);
+
 module.exports = router;
