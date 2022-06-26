@@ -1,27 +1,102 @@
 const express = require('express');
 const router = express.Router();
-const redis = require('../../../lib/services/redis');
-const Logger = require('../../../lib/Logger');
-const log = new Logger('CreditCard');
+const { addCard, getCards } = require('../../../lib/controller/creditCard');
+const { cardValidator } = require('../../validations/creditcardValidation')
 
-const getCards = async (req, resp) => {
-    const data = await redis.get('cards');
-    const cards = JSON.parse(data);
-    log.info('CreditCard', 'cards fetched successfully !!');
-    return resp.send(cards);
-};
+/**
+ * @swagger
+ *
+ * /cards:
+ *   get:
+ *     tags:
+ *      -  Creditcard
+ *     description: API to get the saved creditcards
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *      200:
+ *        description: Request is successfull.
+ *        schema:
+ *          type: object
+ *          properties:
+ *            status:
+ *              type: boolean
+ *              description: flag tells nature of api
+ *            version:
+ *              type: string
+ *              description: Describes api version
+ *            message:
+ *              type: string
+ *              default: Localized api message
+ *            result:
+ *              type: array
+ *              items:
+ *                type: object
+ *                properties:
+ *                  name:
+ *                    type: string
+ *                    description: Customer name
+ *                  cardNumber:
+ *                    type: number
+ *                    description: Creditcard number
+ *                  balance:
+ *                    type: number
+ *                    description: Balance amount available in creditcard
+ *                  limit:
+ *                    type: number
+ *                    description: Creditcard limit
+ *      '400':
+ *         description: Bad request.
+ *      '401':
+ *         description: Authorization information is missing or invalid.
+ *      '404':
+ *         description: A user with the specified token is not found.
+ *      '5XX':
+ *         description: Unexpected error.
+ */
+router.get('/', getCards);
 
-const addCard = async (req, resp) => {
-    const card = req.body;
-    const existedCards = await redis.get('cards');
-    const cards = JSON.parse(existedCards) || [];
-    cards.push(card);
-    await redis.set('cards', JSON.stringify(cards));
-    log.info('CreditCard', 'card successfully added !!');
-    return resp.send('card successfully added !!');
-};
-
-router.get('/list', getCards);
-router.post('/add', addCard);
+/**
+ * @swagger
+ *
+ * /cards:
+ *   post:
+ *     tags:
+ *      -  Creditcard
+ *     description: API to add a credit card
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: item
+ *         schema:
+ *          type: object
+ *          required:
+ *          properties:
+ *              name:
+ *                  type: string
+ *              cardNumber:
+ *                  type: number
+ *              balance:
+ *                  type: number
+ *              limit:
+ *                  type: number
+ *     responses:
+ *      200:
+ *         description: Request is successfull.
+ *      '400':
+ *         description: Bad request.
+ *      '401':
+ *         description: Authorization information is missing or invalid.
+ *      '404':
+ *         description: A user with the specified token is not found.
+ *      '5XX':
+ *         description: Unexpected error.
+ */
+router.post('/', cardValidator, addCard);
 
 module.exports = router;

@@ -1,0 +1,6 @@
+{
+    "card_add_success": "Credit card added successfully",
+    "card_add_failed": "Failure occured while saving the card",
+    "cards_fetch_success": "Credit cards fetched successfully",
+    "cards_fetch_failed": "Failure occured while fethcing the cards"
+}
