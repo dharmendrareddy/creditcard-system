@@ -4,11 +4,12 @@ const http = require('http');
 const i18next = require('i18next')
 const i18nextBackend = require('i18next-fs-backend')
 const i18nextMiddleware = require('i18next-http-middleware')
-const config = require('./config');
+const { userAgentMiddleware } = require('./lib/middlewares')
 
 const app = express()
 
 app.use(bodyParser.json());
+app.use(userAgentMiddleware)
 i18next.use(i18nextBackend).use(i18nextMiddleware.LanguageDetector).init({
     fallbackLng: 'en',
     backend: {
