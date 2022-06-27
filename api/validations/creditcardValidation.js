@@ -8,9 +8,12 @@ const logger = new Logger(__filename)
  * card validation rules
  */
 const cardSchema = Joi.object({
-  name: Joi.string().required(),
-  cardNumber: Joi.number().integer().strict().required(),
-  balance: Joi.number().equal(...[0]).required(),
+  name: Joi.string().required().messages({
+    'string.empty': 'customer_name_required',
+    'any.required': 'customer_name_required'
+  }),
+  cardNumber: Joi.number().min(8).integer().strict().required(),
+  balance: Joi.number().default(0),
   limit: Joi.number().strict().required()
 })
 

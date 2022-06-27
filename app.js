@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const http = require('http');
 const i18next = require('i18next')
@@ -8,6 +9,7 @@ const { userAgentMiddleware } = require('./lib/middlewares')
 
 const app = express()
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(userAgentMiddleware)
 i18next.use(i18nextBackend).use(i18nextMiddleware.LanguageDetector).init({
