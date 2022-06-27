@@ -76,6 +76,10 @@ router.get('/', getCards);
  *         schema:
  *          type: object
  *          required:
+ *              - name
+ *              - cardNumber
+ *              - balance
+ *              - limit
  *          properties:
  *              name:
  *                  type: string
