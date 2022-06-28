@@ -57,3 +57,13 @@ We need to restrict the `/api/docs` endpoint for public access, enabled only for
 ```
 npm start
 ```
+
+**API Security**
+API are secured with JWT authentication. To access the api client has to send JWT auth token.
+To make it simple generated sample JWT token using test user data configured in env
+testUser: {
+    userId: 100,
+    mobile: 971501234567
+}
+
+sample JWT token : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwibW9iaWxlIjo5NzE1MDEyMzQ1NjcsImlhdCI6MTY1NjQxMzE3NiwiZXhwIjoxNjU3Mjc3MTc2LCJpc3MiOiJzZWxmIn0.SQ_1J5E-XoEUOMNnPCP9OJf_77SfLrTu3OSPo0LGCKU
