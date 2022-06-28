@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { addCard, getCards } = require('../../../lib/controller/creditCard');
 const { cardValidator } = require('../../validations/creditcardValidation')
+const { checkAuth } = require('../../../lib/middlewares/authMiddleware');
 
 /**
  * @swagger
@@ -56,7 +57,7 @@ const { cardValidator } = require('../../validations/creditcardValidation')
  *      '5XX':
  *         description: Unexpected error.
  */
-router.get('/', getCards);
+router.get('/', checkAuth, getCards);
 
 /**
  * @swagger
@@ -101,6 +102,6 @@ router.get('/', getCards);
  *      '5XX':
  *         description: Unexpected error.
  */
-router.post('/', cardValidator, addCard);
+router.post('/', checkAuth, cardValidator, addCard);
 
 module.exports = router;

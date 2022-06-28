@@ -2,5 +2,6 @@
     "card_add_success": "تمت إضافة بطاقة الائتمان بنجاح",
     "card_add_failed": "حدث فشل أثناء حفظ البطاقة",
     "cards_fetch_success": "تم جلب بطاقات الائتمان بنجاح",
-    "cards_fetch_failed": "حدث فشل أثناء استخدام البطاقات"
+    "cards_fetch_failed": "حدث فشل أثناء استخدام البطاقات",
+    "unauthorized_request_error": "أنت غير مصرح لك بتنفيذ هذا الطلب"
 }

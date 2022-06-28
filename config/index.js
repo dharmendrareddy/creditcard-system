@@ -28,5 +28,15 @@ module.exports = {
         keys: {
             CARDS: 'cards'
         }
+    },
+    testUser: {
+        userId: 100,
+        mobile: 971501234567
+    },
+    jwt: {
+        secret: env.JWT_SECRET || 'Hi%ptOKd9J22KkP%nayz&&e%TBDy@wFp',
+        expiresIn: env.JWT_TokenExpiresIn || '10d',
+        issuer: env.JWT_ISSUER || 'self',
+        algorithm: env.JWT_ALGORITHM || 'ES256'
     }
 };
