@@ -67,3 +67,7 @@ testUser: {
 }
 
 sample JWT token : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwibW9iaWxlIjo5NzE1MDEyMzQ1NjcsImlhdCI6MTY1NjQxMzE3NiwiZXhwIjoxNjU3Mjc3MTc2LCJpc3MiOiJzZWxmIn0.SQ_1J5E-XoEUOMNnPCP9OJf_77SfLrTu3OSPo0LGCKU
+
+**Swagger**
+API collection can be accessed from below swagger url, this is enabled only for development environment
+http://localhost:3000/docs/
