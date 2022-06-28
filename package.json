@@ -36,6 +36,7 @@
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "useragent": "^2.3.0",
-    "winston": "^3.8.0"
+    "winston": "^3.8.0",
+    "xss": "^1.0.13"
   }
 }
